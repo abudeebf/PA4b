@@ -81,4 +81,12 @@ class NotebooksController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def mobiledownload
+    @notebooks = {notebooks: Notebook.all}
+     respond_to do |format|
+       format.json { render json: @notebooks }
+     end
+end
+def mobileupload
+  end
 end

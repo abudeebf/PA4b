@@ -6,7 +6,8 @@ SampleApp::Application.routes.draw do
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-
+  match '/mobiledownload', to:'notebooks#mobiledownload'
+  match '/mobileupload', to:'notebooks#mobileupload'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
   match '/signup',  to: 'users#new'
