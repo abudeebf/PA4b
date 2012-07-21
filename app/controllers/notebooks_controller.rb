@@ -83,7 +83,7 @@ class NotebooksController < ApplicationController
   end
   def mobiledownload
     @notebooks = {notebooks: Notebook.all}
-    @notebooks.each do |notebooks|
+    @notebooks.each do |notebook|
       notebook[:name]=User.find(notebook.user_id).name
     end
      respond_to do |format|
