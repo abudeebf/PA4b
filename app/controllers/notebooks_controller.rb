@@ -84,7 +84,7 @@ class NotebooksController < ApplicationController
   def mobiledownload
     @notebooks = {notebooks: Notebook.all}
     @notebooks.each do |notebook|
-      notebook[:name]=User.find(notebook.user_id).name
+      notebook[:name]=(User.find(notebook.user_id)).name
     end
      respond_to do |format|
        format.json { render json: @notebooks }
