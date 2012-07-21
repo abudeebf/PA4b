@@ -88,5 +88,26 @@ class NotebooksController < ApplicationController
      end
 end
 def mobileupload
+   @correct={signin: false}
+   puts " {  email: #{params[:email]} password: #{params[:password]}"
+    user = User.find_by_email(params[:email])
+    if user && user.authenticate(params[:password])
+     @correct={signin: true}
+     @notebook=Notebook.new
+     @notebook.user_id=user.id
+     @notebook.title=params[:title]
+     @notebook.content=params[:content]
+      @notebook.teacher=params[:teacher]
+       @notebook.course=params[:course]
+        @notebook.free=params[:free]
+         @notebook.price=params[:price]
+         @notebook.save!
+
+    else
+   @correct={signin: false}
+   end
+      respond_to do |format|
+      format.json { render json: @correct }
+    end
   end
 end
